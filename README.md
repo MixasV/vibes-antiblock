@@ -1,5 +1,7 @@
 # Vibes TCG Connector
 
+🌐 [English](README_EN.md)
+
 Лёгкий обходчик блокировок DPI для карточной игры **Vibes TCG**. Одна кнопка: включил — играешь. Лобби, магазин, ивенты и карточки — грузятся сразу и без задержек.
 
 **Автор:** [🌐 mixas.pro](https://mixas.pro) · [✈️ Telegram: mixaseth.t.me](https://mixaseth.t.me)
