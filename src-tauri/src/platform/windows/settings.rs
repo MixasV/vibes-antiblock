@@ -28,9 +28,6 @@ pub struct AppSettings {
     /// TCP ports intercepted by WinDivert: 80/443 (TLS login+API+game),
     /// 5222/5223 (XMPP chat), per portforward.com Blitz requirements.
     pub intercept_ports_tcp: Vec<u16>,
-    /// Whether engine-side auto-hostlist learning is enabled
-    /// (`--hostlist-auto`, winws2 appends learned domains to `vibes-auto.txt`).
-    pub auto_hostlist_enabled: bool,
     /// Selected background image id from [`BACKGROUND_IDS`], `None` = plain theme.
     pub background_id: Option<String>,
 }
@@ -51,8 +48,7 @@ impl Default for AppSettings {
                 "cloudfront.net".into(),
             ],
             intercept_ports_tcp: vec![80, 443, 5222, 5223],
-            auto_hostlist_enabled: false,
-            background_id: Some("art-tank".into()),
+            background_id: Some("penguins".into()),
         }
     }
 }

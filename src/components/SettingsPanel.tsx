@@ -78,19 +78,9 @@ export default function SettingsPanel({
           </p>
         </Section>
 
-        {/* Auto hostlist */}
+        {/* Engine info */}
         <Section title="Движок" icon={<RotateCcw size={13} />}>
-          <Toggle
-            label="Авто-хостлист (--hostlist-auto)"
-            hint="Движок сам дописывает похожие домены в vibes-auto.txt"
-            checked={draft.auto_hostlist_enabled}
-            onChange={(v) => {
-              const next = { ...draft, auto_hostlist_enabled: v };
-              setDraft(next);
-              void persist(next);
-            }}
-          />
-          <div className="mt-2 text-[11px] text-neutral-500">
+          <div className="text-[11px] text-neutral-500">
             TCP-порты перехвата: {draft.intercept_ports_tcp.join(", ")}
           </div>
         </Section>
@@ -201,37 +191,3 @@ function Thumb({
   );
 }
 
-function Toggle({
-  label,
-  hint,
-  checked,
-  onChange,
-}: {
-  label: string;
-  hint?: string;
-  checked: boolean;
-  onChange: (v: boolean) => void;
-}) {
-  return (
-    <button
-      className="glass-row flex w-full items-center justify-between px-2.5 py-2 text-left transition-colors hover:bg-white/8"
-      onClick={() => onChange(!checked)}
-    >
-      <span>
-        <span className="block text-xs text-neutral-200">{label}</span>
-        {hint && <span className="block text-[11px] text-neutral-500">{hint}</span>}
-      </span>
-      <span
-        className={`relative h-5 w-9 shrink-0 rounded-full transition-colors ${
-          checked ? "bg-emerald-500" : "bg-neutral-600"
-        }`}
-      >
-        <span
-          className={`absolute top-0.5 h-4 w-4 rounded-full bg-white transition-all ${
-            checked ? "left-[18px]" : "left-0.5"
-          }`}
-        />
-      </span>
-    </button>
-  );
-}

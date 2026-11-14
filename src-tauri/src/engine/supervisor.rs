@@ -263,7 +263,7 @@ impl Supervisor {
         );
 
         // 4. Command line: single fixed WoT strategy (TLS fake,split2).
-        let args = build_arguments(settings, &binaries, &hostlist);
+        let args = build_arguments(&binaries, &hostlist);
         self.log(
             "info",
             &format!("Командная строка: winws.exe {}", args.join(" ")),
@@ -435,7 +435,6 @@ impl Supervisor {
 /// wgcdn.co -> 84.38.4.62 is NOT in ipset-all.txt), which only added delay.
 /// File arguments are relative to the engine's working directory (`bin_dir`).
 fn build_arguments(
-    settings: &AppSettings,
     binaries: &crate::platform::windows::ZapretBinaries,
     hostlist: &std::path::Path,
 ) -> Vec<String> {
@@ -543,21 +542,6 @@ fn build_arguments(
         "--dpi-desync-fake-http=tls_clienthello_max_ru.bin".into(),
     ];
 
-    if settings.auto_hostlist_enabled {
-        if let Some(parent) = hostlist.parent() {
-            let auto_path = parent.join("vibes-auto.txt");
-            if !auto_path.is_file() {
-                let _ = std::fs::File::create(&auto_path);
-            }
-            // Insert right after the general user list (as in the parent).
-            if let Some(pos) = args
-                .iter()
-                .rposition(|a: &String| a == "--hostlist=lists/list-general-user.txt")
-            {
-                args.insert(pos + 1, format!("--hostlist-auto={}", to_arg(&auto_path)));
-            }
-        }
-    }
     args
 }
 
