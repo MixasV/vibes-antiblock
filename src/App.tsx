@@ -121,8 +121,8 @@ export default function App() {
 
   return (
     <div className="relative h-full">
-      {/* Penguin night background */}
-      <div className="app-bg" style={{ backgroundImage: "url(/bg/penguins.svg)" }} />
+      {/* Official Pudgy Penguins art */}
+      <div className="app-bg" style={{ backgroundImage: "url(/bg/pudgy.png)" }} />
       <div className="app-bg-overlay" />
 
       <div className="relative z-10 flex h-full flex-col">
